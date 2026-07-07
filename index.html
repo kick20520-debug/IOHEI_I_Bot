@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Платежный ⭐ — Купить звёзды Telegram быстро и безопасно</title>
+  <title>Юнец Shop ⭐ — Купить звёзды Telegram быстро и безопасно</title>
   <meta name="description" content="Покупай звёзды Telegram быстро, безопасно и по выгодным ценам. Моментальное зачисление, удобная оплата через бота." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>" />
   <style>
@@ -46,9 +46,10 @@
 
     .logo {
       font-size: 1.3rem; font-weight: 700;
-      color: var(--gold);
       letter-spacing: -.5px;
     }
+    .logo-yunets { color: var(--gold); }
+    .logo-shop   { color: #fff; }
 
     nav {
       display: flex; gap: 2rem;
@@ -167,6 +168,82 @@
 
     .hero-stat strong { display: block; font-size: 1.6rem; font-weight: 700; color: var(--gold); }
     .hero-stat span { font-size: .85rem; color: var(--muted); }
+
+    /* ───── HERO LAYOUT ───── */
+    #home {
+      justify-content: space-between;
+      gap: 3rem;
+    }
+    .hero-image {
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-image img {
+      width: clamp(220px, 28vw, 380px);
+      border-radius: 50%;
+      box-shadow: 0 0 60px rgba(245,197,24,.25), 0 0 120px rgba(245,197,24,.1);
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-12px); }
+    }
+    @media(max-width:900px) {
+      #home { flex-direction: column; justify-content: center; }
+      .hero-image { order: -1; }
+      .hero-image img { width: clamp(140px, 40vw, 220px); }
+    }
+
+    /* ───── PAYMENT TABS ───── */
+    .pay-tabs {
+      display: flex; gap: .75rem; flex-wrap: wrap;
+      max-width: 600px; margin: 0 auto 1.5rem;
+    }
+    .pay-tab {
+      padding: .5rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600; font-size: .9rem;
+      cursor: pointer;
+      border: 2px solid rgba(255,255,255,.1);
+      background: var(--bg3);
+      color: var(--muted);
+      transition: all var(--transition);
+    }
+    .pay-tab.active {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(245,197,24,.08);
+    }
+    .pay-panel { display: none; max-width: 600px; margin: 0 auto; }
+    .pay-panel.active { display: block; }
+    .pay-card {
+      background: var(--bg3);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: var(--radius);
+      padding: 1.8rem 2rem;
+    }
+    .pay-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; color: var(--gold); }
+    .pay-row { display: flex; justify-content: space-between; align-items: center; padding: .6rem 0; border-bottom: 1px solid rgba(255,255,255,.05); }
+    .pay-row:last-child { border-bottom: none; }
+    .pay-row .label { font-size: .85rem; color: var(--muted); }
+    .pay-row .val { font-weight: 600; font-size: .95rem; font-family: monospace; }
+    .pay-copy {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: rgba(245,197,24,.1); border: 1px solid rgba(245,197,24,.25);
+      color: var(--gold); border-radius: 6px;
+      padding: .25rem .7rem; font-size: .82rem; font-weight: 600;
+      cursor: pointer; transition: all var(--transition); margin-left: .75rem;
+    }
+    .pay-copy:hover { background: rgba(245,197,24,.2); }
+    .pay-note {
+      margin-top: 1.2rem;
+      background: rgba(245,197,24,.05);
+      border-left: 3px solid var(--gold);
+      padding: .8rem 1rem;
+      border-radius: 0 8px 8px 0;
+      font-size: .85rem; color: var(--muted); line-height: 1.5;
+    }
+    .pay-note strong { color: var(--text); }
 
     /* ───── SECTIONS COMMON ───── */
     section { padding: 5rem 5vw; }
@@ -373,7 +450,7 @@
 
 <!-- ═══════════════ HEADER ═══════════════ -->
 <header>
-  <div class="logo">Платежный ⭐</div>
+  <div class="logo"><span class="logo-yunets">Юнец</span> <span class="logo-shop">Shop</span> ⭐</div>
 
   <nav id="nav">
     <a href="#home">Главная</a>
@@ -400,8 +477,8 @@
     <h1>Покупай звёзды Telegram<br><span>быстро и безопасно</span></h1>
 
     <p class="hero-sub">
-      Пополняй баланс в любимых ботах, поддерживай авторов и дари подарки —
-      всё через одного бота. Без регистрации, без лишних шагов.
+      Пополняй баланс в нашем боте, покупай Telegram Premium себе и друзьям,
+      дари удалённые подарки — всё через одного бота. Без регистрации, без лишних шагов.
     </p>
 
     <div class="hero-btns">
@@ -425,6 +502,11 @@
         <span>Несколько способов оплаты</span>
       </div>
     </div>
+  </div>
+
+  <div class="hero-image">
+    <img src="avatar.png" alt="Юнец Shop — звёзды Telegram"
+         onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Ccircle cx=%22100%22 cy=%22100%22 r=%22100%22 fill=%22%231a1a00%22/%3E%3Ctext x=%2250%25%22 y=%2254%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%22100%22%3E%E2%AD%90%3C/text%3E%3C/svg%3E'" />
   </div>
 </section>
 
@@ -470,14 +552,14 @@
 <!-- ═══════════════ TARIFFS ═══════════════ -->
 <section id="tariffs">
   <h2 class="section-title">Пакеты звёзд</h2>
-  <p class="section-sub">Выбери нужное количество — нажми «Купить» и переходи в бота</p>
+  <p class="section-sub">Фиксированный курс: <strong style="color:var(--gold)">1.24 ₽ = 1 звезда</strong></p>
 
   <div class="tariffs-grid">
     <div class="tariff-card">
       <div class="tariff-stars">50 ⭐</div>
       <div class="tariff-label">Стартовый</div>
-      <div class="tariff-price">~ 50 ₽</div>
-      <div class="tariff-per">≈ 1 ₽ за звезду</div>
+      <div class="tariff-price">62 ₽</div>
+      <div class="tariff-per">1.24 ₽ за звезду</div>
       <a class="btn btn-secondary" style="width:100%"
          href="https://t.me/IOHEI_I_Bot?start=50stars"
          target="_blank" rel="noopener">Купить</a>
@@ -486,8 +568,8 @@
     <div class="tariff-card">
       <div class="tariff-stars">100 ⭐</div>
       <div class="tariff-label">Базовый</div>
-      <div class="tariff-price">~ 95 ₽</div>
-      <div class="tariff-per">≈ 0.95 ₽ за звезду</div>
+      <div class="tariff-price">124 ₽</div>
+      <div class="tariff-per">1.24 ₽ за звезду</div>
       <a class="btn btn-secondary" style="width:100%"
          href="https://t.me/IOHEI_I_Bot?start=100stars"
          target="_blank" rel="noopener">Купить</a>
@@ -497,8 +579,8 @@
       <div class="badge-popular">Популярное</div>
       <div class="tariff-stars">500 ⭐</div>
       <div class="tariff-label">Оптимальный</div>
-      <div class="tariff-price">~ 440 ₽</div>
-      <div class="tariff-per">≈ 0.88 ₽ за звезду</div>
+      <div class="tariff-price">620 ₽</div>
+      <div class="tariff-per">1.24 ₽ за звезду</div>
       <a class="btn btn-primary" style="width:100%"
          href="https://t.me/IOHEI_I_Bot?start=500stars"
          target="_blank" rel="noopener">Купить</a>
@@ -507,8 +589,8 @@
     <div class="tariff-card">
       <div class="tariff-stars">1000 ⭐</div>
       <div class="tariff-label">Максимальный</div>
-      <div class="tariff-price">~ 820 ₽</div>
-      <div class="tariff-per">≈ 0.82 ₽ за звезду</div>
+      <div class="tariff-price">1 240 ₽</div>
+      <div class="tariff-per">1.24 ₽ за звезду</div>
       <a class="btn btn-secondary" style="width:100%"
          href="https://t.me/IOHEI_I_Bot?start=1000stars"
          target="_blank" rel="noopener">Купить</a>
@@ -528,35 +610,74 @@
 <!-- ═══════════════ HOW TO BUY ═══════════════ -->
 <section id="how">
   <h2 class="section-title">Как купить звёзды</h2>
-  <p class="section-sub">Весь процесс занимает меньше минуты</p>
+  <p class="section-sub">Выбери удобный способ оплаты</p>
 
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">1</div>
-      <div class="step-body">
-        <h3>Перейди в бота</h3>
-        <p>Нажми любую кнопку «Купить в боте» — откроется <a href="https://t.me/IOHEI_I_Bot" target="_blank" rel="noopener" style="color:var(--blue)">@IOHEI_I_Bot</a> в Telegram</p>
+  <!-- Вкладки -->
+  <div class="pay-tabs" style="justify-content:center;margin-bottom:2.5rem;">
+    <button class="pay-tab active" onclick="switchTab(this,'tab-bot')">🤖 Через бота</button>
+    <button class="pay-tab" onclick="switchTab(this,'tab-site')">💳 Оплата на сайте (СБП)</button>
+  </div>
+
+  <!-- Вкладка: через бота -->
+  <div class="pay-panel active" id="tab-bot">
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Перейди в бота</h3>
+          <p>Нажми любую кнопку «Купить в боте» — откроется <a href="https://t.me/IOHEI_I_Bot" target="_blank" rel="noopener" style="color:var(--blue)">@IOHEI_I_Bot</a> в Telegram</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Выбери пакет звёзд</h3>
+          <p>Укажи нужное количество или выбери один из готовых пакетов прямо в боте</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Оплати удобным способом</h3>
+          <p>Картой, криптовалютой или через Telegram Payments — на выбор</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Получи звёзды мгновенно</h3>
+          <p>Сразу после подтверждения оплаты звёзды зачислятся на твой аккаунт Telegram</p>
+        </div>
       </div>
     </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <div class="step-body">
-        <h3>Выбери пакет звёзд</h3>
-        <p>Укажи нужное количество или выбери один из готовых пакетов прямо в боте</p>
+  </div>
+
+  <!-- Вкладка: СБП на сайте -->
+  <div class="pay-panel" id="tab-site">
+    <div class="pay-card">
+      <h3>💳 Оплата через СБП (Система быстрых платежей)</h3>
+
+      <div class="pay-row">
+        <span class="label">Номер телефона</span>
+        <span>
+          <span class="val">+7 953 815-97-68</span>
+          <button class="pay-copy" onclick="copyText('+79538159768', this)">📋 Скопировать</button>
+        </span>
       </div>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <div class="step-body">
-        <h3>Оплати удобным способом</h3>
-        <p>Картой, криптовалютой или через Telegram Payments — на выбор</p>
+      <div class="pay-row">
+        <span class="label">Банки</span>
+        <span class="val">Альфа-Банк &nbsp;·&nbsp; Т-Банк</span>
       </div>
-    </div>
-    <div class="step">
-      <div class="step-num">4</div>
-      <div class="step-body">
-        <h3>Получи звёзды мгновенно</h3>
-        <p>Сразу после подтверждения оплаты звёзды зачислятся на твой аккаунт Telegram</p>
+      <div class="pay-row">
+        <span class="label">Получатель</span>
+        <span class="val">Юнец Shop</span>
+      </div>
+
+      <div class="pay-note">
+        <strong>⚠️ Обязательно укажи в описании платежа:</strong><br>
+        1. Сколько звёзд ты покупаешь (например: <em>«100 звёзд»</em>)<br>
+        2. Свой Telegram username для связи (например: <em>«@username»</em>)<br><br>
+        После оплаты напиши в <a href="https://t.me/IOHEI_I_support_bot" target="_blank" rel="noopener" style="color:var(--blue)">поддержку</a> — скинь скриншот чека и свой юзернейм. Звёзды зачислим вручную в течение 15 минут.
       </div>
     </div>
   </div>
@@ -616,13 +737,6 @@
       </div>
     </details>
 
-    <details>
-      <summary>Что такое deep-link на конкретный пакет?</summary>
-      <div class="faq-answer">
-        Ссылки вида <code style="color:var(--gold)">t.me/IOHEI_I_Bot?start=500stars</code>
-        открывают бота сразу на нужном пакете — удобно, если ты уже знаешь, сколько звёзд хочешь.
-      </div>
-    </details>
   </div>
 </section>
 
@@ -630,7 +744,7 @@
 <footer id="contacts">
   <div class="footer-inner">
     <div class="footer-col">
-      <h4>Платежный ⭐</h4>
+      <h4><span class="logo-yunets">Юнец</span> <span class="logo-shop">Shop</span> ⭐</h4>
       <p>Сервис продажи звёзд Telegram. Быстро, безопасно, без лишних шагов.</p>
     </div>
 
@@ -646,19 +760,18 @@
     <div class="footer-col">
       <h4>Контакты</h4>
       <a href="https://t.me/IOHEI_I_Bot" target="_blank" rel="noopener">🤖 Бот: @IOHEI_I_Bot</a>
-      <a href="https://t.me/IOHEI_I_Bot" target="_blank" rel="noopener">💬 Поддержка в Telegram</a>
+      <a href="https://t.me/IOHEI_I_support_bot" target="_blank" rel="noopener">💬 Поддержка в Telegram</a>
     </div>
 
     <div class="footer-col">
       <h4>Документы</h4>
-      <a href="#">Политика конфиденциальности</a>
-      <a href="#">Публичная оферта</a>
-      <a href="#">Условия возврата</a>
+      <a href="https://telegra.ph/Politika-konfidencialnosti-07-07-43" target="_blank" rel="noopener">Политика конфиденциальности</a>
+      <a href="#faq" onclick="setTimeout(()=>{document.querySelector('#faq details:nth-child(4)').open=true},200)">Условия возврата</a>
     </div>
   </div>
 
   <div class="footer-bottom">
-    <span>© 2026 Платежный. Все права защищены.</span>
+    <span>© 2026 Юнец Shop. Все права защищены.</span>
     <span>Сервис не является официальным продуктом Telegram</span>
   </div>
 </footer>
@@ -684,6 +797,31 @@
   nav.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => nav.classList.remove('open'));
   });
+
+  // Payment tabs
+  function switchTab(btn, panelId) {
+    document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.pay-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+  }
+
+  // Copy to clipboard
+  function copyText(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+      const orig = btn.innerHTML;
+      btn.innerHTML = '✅ Скопировано';
+      btn.style.background = 'rgba(80,200,80,.15)';
+      btn.style.borderColor = 'rgba(80,200,80,.4)';
+      btn.style.color = '#5fc87a';
+      setTimeout(() => {
+        btn.innerHTML = orig;
+        btn.style.background = '';
+        btn.style.borderColor = '';
+        btn.style.color = '';
+      }, 2000);
+    });
+  }
 
   // Highlight active nav link on scroll
   const sections = document.querySelectorAll('section[id], footer[id]');
